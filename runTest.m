@@ -1,7 +1,9 @@
 %%Run test;
 import matlab.unittest.TestSuite;
-%% Instance of testing class
+%% Merging Tests;
+suite1 = TestSuite.fromFolder('test');
+totalSuite = suite1;
 %% Run Test
-result = run(TestSuite.fromFolder('test'));
+result = run(totalSuite);
 %% Display Test Results;
 disp(result);
