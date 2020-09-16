@@ -9,7 +9,8 @@ classdef Test1 < matlab.unittest.TestCase
         function addSolverToPath(testCase)
             testCase.OriginalPath = path;
             addpath(fullfile(pwd, 'src'));
-            addpath(fullfile(pwd, '..','src'));
+            addpath(fullfile(pwd,'..' ,'src'));
+            addpath(fullfile(pwd,'..' ,'..','src'));
         end
     end
     
