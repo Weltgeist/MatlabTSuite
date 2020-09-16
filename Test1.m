@@ -6,12 +6,10 @@ classdef Test1 < matlab.unittest.TestCase
     end
     
     methods (Test)
-        function obj = untitled(inputArg1,inputArg2)
-            obj.Property1 = inputArg1 + inputArg2;
-        end
-        
-        function outputArg = method1(obj,inputArg)
-            outputArg = obj.Property1 + inputArg;
+        function testRealSolution(testCase)
+            actSolution = sqroot([4,9,144]);
+            expSolution = [2,3,12];
+            testCase.verifyEqual(actSolution,expSolution,'AbsTol',sqrt(eps))
         end
     end
 end
