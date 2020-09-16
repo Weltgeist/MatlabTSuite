@@ -2,7 +2,20 @@ classdef Test1 < matlab.unittest.TestCase
 
     
     properties
-        Property1
+        OriginalPath
+    end
+    
+    methods (TestMethodSetup)
+        function addSolverToPath(testCase)
+            testCase.OriginalPath = path;
+            addpath(fullfile(pwd, 'src'));
+        end
+    end
+    
+    methods (TestMethodTeardown)
+        function restorePath(testCase)
+            path(testCase.OriginalPath);
+        end
     end
     
     methods (Test)
