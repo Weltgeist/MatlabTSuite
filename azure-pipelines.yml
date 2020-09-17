@@ -15,7 +15,7 @@ pool:
 steps:
   - task: RunMATLABCommand@0
     inputs:
-      command: runTest
+      command: runBatchT
   - task: RunMATLABTests@0
     inputs:
       testResultsJUnit: test-results/results.xml
