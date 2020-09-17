@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches: 
+    include:
+      - master
+pool:
+  name: Default
+  demands:
+    - agent.name -equals WORK
+
+steps:
+  - task: RunMATLABCommand@0
+    inputs:
+      command: runTest
+  - task: RunMATLABTests@0
+    inputs:
+      testResultsJUnit: test-results/results.xml
+      codeCoverageCobertura: code-coverage/coverage.xml
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFiles: test-results/results.xml
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: code-coverage/coverage.xml
